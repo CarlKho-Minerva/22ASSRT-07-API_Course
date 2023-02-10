@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Dynamic img source by id -->
+    <img src="" id="capybara" alt="image" style="width:100vw;margin-right: 10px;">
+    <script>
+        console.log("Prepping to fetch capy img");
+        catchCapy()
+        .then(response => {
+            console.log("Capy fetched!");
+        })
+        .catch(error => {
+            console.log("error!");
+            console.error(error);
+        });
+
+        async function catchCapy() {
+            // initialize the response variable
+            const response = await fetch('00_Capybara.jpeg');
+            // the blob is the image data
+            const blob = await response.blob();
+            document.getElementById('capybara').src = URL.createObjectURL(blob);
+        };
+
+        // old code - no async yet
+        // // This is the path to the image I want to display with fetch() aka dynamic data
+        // fetch('Capybara.jpeg').then(response => {
+        //     console.log(response);
+        //     // Return the blob - the blob is the image data
+        //     return response.blob();
+        // })
+        // .then(blob => {
+        //     console.log(blob);
+        //     // Create an object URL from the blob and set it as the src of the image
+        //     document.getElementById('capybara').src = URL.createObjectURL(blob);
+        // })
+        // .catch(error => {
+        //     console.log("error!");
+        //     console.log(error);
+        // });
+    </script>
+</body>
+</html>
